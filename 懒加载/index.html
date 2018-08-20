@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="description" content="页面图片等元素在普通元素中滚动动态加载技术" />
+		<meta name="description" content="张鑫旭web前端学习之页面图片等元素在普通元素中滚动动态加载技术实例页面" />
+		<meta name="keywords" content="jQuery,scrollLoading,滚动加载, 插件" />
+		<meta name="author" content="张鑫旭,zhangxixnu" />
+		<title>页面图片等元素在普通元素中滚动动态加载技术 » 张鑫旭-鑫空间-鑫生活</title>
+		<link rel="stylesheet" href="css/common.css" type="text/css" />
+		<style>
+			.zxx_test_list {
+				font-size: 13px;
+			}
+			
+			.zxx_test_list img {
+				margin-bottom: 5px;
+			}
+			
+			.zxx_main_con {
+				height: 600px;
+				overflow: auto;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="zxx_out_box">
+			<div class="zxx_in_box">
+				<div class="zxx_header">
+					<a href="/">
+						<img class="l" src="image/index_logo.gif" />
+					</a>
+					<span class="zxx_author_time">by zhangxinxu 2010-11-19 10:11</span>
+				</div>
+				<h1 class="zxx_title">页面图片等元素在普通元素中滚动动态加载技术</h1>
+				<div id="zxxMainCon" class="zxx_main_con">
+					<script>
+						var tempHTML = "";
+						for(var i = 1; i <= 30; i += 1) {
+							if(i == 6) {
+								tempHTML += '<div class="zxx_test_list scrollLoading" data-url="loaded.html"><div style="padding:100px 0; text-align:center;"><img src="image/loading.gif" style="margin:0 8px -8px 0;" />加载中...</div></div>';
+							} else {
+								tempHTML += '<div class="zxx_test_list tc"><img class="scrollLoading" data-url="//image.zhangxinxu.com/image/study/head/s180/' + i + '.jpeg" src="//s1.xiaomishu.com/b/img/pixel.gif" width="180" height="180" style="background:url(/study/image/loading.gif) no-repeat center;" /><br />图片' + i + '(新浪微博提供)</div>';
+							}
+						}
+						tempHTML += '<div class="zxx_test_list tc"><h6>下面藏了一张图片，<a href="javascript:" id="zxxClickBtn">点击显示</a></h6>\
+        <div id="zxxShow" style="display:none;">\
+        	<img class="scrollLoading" width="256" height="191" data-url="//image.zhangxinxu.com/image/study/s/s256/mm1.jpg" />\
+        </div></div>';
+						document.getElementById("zxxMainCon").innerHTML = tempHTML;
+					</script>
+				</div>
+
+				<div class="zxx_footer">
+					Copyright &copy;
+					<a href="/">张鑫旭-鑫空间-鑫生活</a>
+					|
+					<a href="//www.zhangxinxu.com/wordpress/?p=1259">该篇相关文章</a>
+				</div>
+			</div>
+		</div>
+		<script src="//apps.bdimg.com/libs/jquery/1.9.0/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/jquery.scrollLoading.js"></script>
+		<script>
+			$(function() {
+				$(".scrollLoading").scrollLoading({
+					container: $("#zxxMainCon"),
+					callback: function() {
+						this.style.border = "3px solid #a0b3d6";
+					}
+				});
+
+				$('#zxxClickBtn').click(function() {
+					$('#zxxShow').show();
+					$("#zxxMainCon").trigger('scroll');
+				});
+			});
+		</script>
+
+		<div style="position:absolute; left:-6000px; top:-6000px;">
+			<script type="text/javascript">
+				var _gaq = _gaq || [];
+				_gaq.push(['_setAccount', 'UA-11205167-1']);
+				_gaq.push(['_trackPageview']);
+
+				(function() {
+					var ga = document.createElement('script');
+					ga.type = 'text/javascript';
+					ga.async = true;
+					ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(ga, s);
+				})();
+			</script>
+		</div>
+		<div class="zxx_ad_left shadow fixed">
+			<script type="text/javascript">
+				<!--
+				google_ad_client = "ca-pub-0090627341039040";
+				/* 图片广告120x240 */
+				google_ad_slot = "5742530632";
+				google_ad_width = 120;
+				google_ad_height = 240;
+				//-->
+			</script>
+			<script type="text/javascript" src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+			</script>
+		</div>
+		<div class="zxx_ad_right shadow fixed">
+			<script type="text/javascript">
+				<!--
+				google_ad_client = "ca-pub-0090627341039040";
+				/* 图片广告120x240 */
+				google_ad_slot = "5742530632";
+				google_ad_width = 120;
+				google_ad_height = 240;
+				//-->
+			</script>
+			<script type="text/javascript" src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+			</script>
+		</div>
+	</body>
+
+</html>

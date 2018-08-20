@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>放大镜</title>
+		<link rel="stylesheet" type="text/css" href="css/base.css"/>
+		<style type="text/css">
+			*{margin: 0;padding: 0;}
+			.box {
+				position: relative;
+				height: 350px;
+				width: 350px;
+				margin: 100px;
+				border: 1px solid #808080;
+			}
+			.small {
+				position: relative;
+				cursor: pointer;
+				border: 1px solid #808080;
+				
+			}
+			.mask {
+				display: none;
+				position: absolute;
+				width: 200px;
+				height: 200px;
+				background-color: #808080;
+				opacity: .5;
+				top: 0;
+				left: 0;
+			}
+			.big {
+				display: none;
+				position: absolute;
+				height: 450px;
+				width: 450px;
+				overflow: hidden;
+				left: 400px;
+				top: 0;
+				border: 1px solid #808080;
+			}
+			.big img {
+				position: absolute;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box" id="box">
+			<div class="small" id="small">
+				<img src="images/001.jpg" alt="" />
+				<!--遮罩层-->
+				<div class="mask"></div>
+			</div>
+			<div class="big" id="big">
+				<img src="images/0001.jpg"/>
+			</div>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+/*24再次写放大镜
+ * 1、首先是css以及布局
+ *	1.1大盒子里面的img一定要有position：absolute；不然不会动
+ * 2、获取各个元素
+ * 3、鼠标移处和仪进后显示和隐藏大盒子和图片
+ * 4、遮罩层（var event = event || window.event;）
+ * 	4.1遮罩层移动随鼠标的xy，首先定义想x,y
+ * 	4.1.1 不能超过小盒子的内部 （鼠标的坐标clientX-小盒子的左侧到文档的距离this(small).offsetLeft - 遮罩层的1/2offsetwidth ）
+ * 		x = event.clientX - this.offsetParent.offsetLeft - mask.offsetWidth/2;
+ * 5、判断x和y（遮罩层mask的中心）的大小是否超出了small的盒子
+ * 	5.1 x<0则让遮罩层不要超出左侧，一支等于0
+ * 	5.2 x>small.offsetWidth - mask.offsetWidth(即mask的中心不要超过small最右面的地方)
+ * 6、让mask的left = x top=y
+ * 7、让大盒子的图片的left为   -x*（大盒子/小盒子）[到达等比例的水品]
+ * */
+function magnifier(){
+	var box = document.getElementById('box');
+	var small = box.children[0];
+	var mask = small.children[1];
+	var big = box.children[1];
+	var bigimg = big.children[0];
+	small.onmouseover = function(){
+		mask.style.display = 'block';
+		big.style.display = 'block';
+	}
+	small.onmouseout = function(){
+		mask.style.display = 'none';
+		big.style.display = 'none';
+	}
+	var x=0,y=0;
+	small.onmousemove = function(){
+		var event = window.event || event;
+		x = event.clientX - this.offsetParent.offsetLeft - mask.offsetWidth/2;
+		y = event.clientY - this.offsetParent.offsetTop - mask.offsetHeight/2;
+		if(x<0){
+			x = 0;
+		}else if(x>small.offsetWidth - mask.offsetWidth){
+			x = this.offsetWidth - mask.offsetWidth;
+		}
+		if(y<0){
+			y = 0;	
+		}else if(y>small.offsetHeight - mask.offsetHeight){
+			y = this.offsetHeight - mask.offsetHeight;
+		}
+		mask.style.left = x + "px";
+		mask.style.top = y + "px";
+		bigimg.style.left = -x*(big.offsetWidth/small.offsetWidth) + "px";
+		bigimg.style.top = -y*(big.offsetWidth/small.offsetWidth) + "px";
+	}
+}
+magnifier()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>

@@ -1,0 +1,80 @@
+<html>
+	<head>
+		<title></title>
+	</head>
+	<body>
+		
+	</body>
+</html>
+<script type="text/javascript">
+	var json1= {
+	"Experience": [
+		{ "palce":"1巢湖学院" , "starttime":"2017-10-10","endtime":"2018-10-10","description":"今年是123" },
+		{ "palce":"2巢湖学院" , "starttime":"2017-10-10","endtime":"2018-10-10","description":"今年是123" },
+		{ "palce":"3巢湖学院" , "starttime":"2017-10-10","endtime":"2018-10-10","description":"今年是123" },
+		{ "palce":"4巢湖学院" , "starttime":"2017-10-10","endtime":"2018-10-10","description":"今年是123" },
+		{ "palce":"5巢湖学院" , "starttime":"2017-10-10","endtime":"2018-10-10","description":"今年是123" },
+		{ "palce":"6巢湖学院" , "starttime":"2017-10-10","endtime":"2018-10-10","description":"今年是123" },
+		{ "palce":"7巢湖学院" , "starttime":"2017-10-10","endtime":"2018-10-10","description":"今年是123" },
+		{ "palce":"8巢湖学院" , "starttime":"2017-10-10","endtime":"2018-10-10","description":"今年是123" },
+		{ "palce":"9巢湖学院" , "starttime":"2017-10-10","endtime":"2018-10-10","description":"今年是123" },
+		{ "palce":"10巢湖学院" , "starttime":"2017-10-10","endtime":"2018-10-10","description":"今年是123" },
+		{ "palce":"11巢湖学院" , "starttime":"2017-10-10","endtime":"2018-10-10","description":"今年是123" },
+		{ "palce":"12巢湖学院" , "starttime":"2017-10-10","endtime":"2018-10-10","description":"今年是123" }
+		]
+	}
+	
+	//	var  raw = json1.replace(/\\([^u])/g, 'json1')
+	var  arr = [];
+	var qqq = json1.Experience;
+	for(var i in qqq){
+        arr.push(i,qqq[i]);
+    }
+	console.log(arr)
+//	var q = JSON.parse(json1)
+//	console.log(json1.Experience.length)
+	var exlength = json1.Experience.length
+	function addjson(json1){
+		for (var i=0 ;i < exlength ; ++i) {
+			
+//			var x = 2*i -1;
+			var r = [];
+			r.push(arr[i],arr[i+1]);
+			
+			
+			
+			console.log(r)
+		}
+//		console.log(r)
+//			console.log(x)
+			/*for (var x =2*i-1;x<exlength;) {
+				console.log(x)
+				
+				
+			}*/
+			/*var r=[];
+			var x =2*i-1;
+			if(x<length){
+				console.log(x)
+				console.log(r)
+				var a = arr[x-1];
+				console.log(x)
+				
+				console.log(arr[x])*/
+//				var b ={,q[x]};
+//				r.push(b)
+//			}
+//			for (x;x<length;i++) {
+//				alert('ee')
+//				console.log(x)
+//				
+//			}
+			
+//			for(;x<length/2;){
+//				console.log(x)
+//			}
+	
+		}
+	addjson()
+	
+</script>

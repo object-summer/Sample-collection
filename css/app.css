@@ -1,0 +1,41 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+.box{
+	margin: 0 auto;
+	width: 800px;
+	height: 880px;
+	border: 1px solid #666666;
+}
+.box .list ul li{
+	cursor: pointer;
+	float: right;
+	list-style: none;
+	margin-left: 10px;
+	width: 40px;
+	height: 30px;
+	font-size: 20px;
+}
+
+.box .list-2{
+	clear: both;
+}
+.list-2 ul{
+	float: left;
+	margin-left: 10px;
+}
+.list-2 ul .list-2-h{
+	float: left;
+	list-style: none;
+	width: 185px;
+	height: 280px;
+	margin-left: 10px;
+}
+.list-2-s{
+	height: 280px;
+}
+span{
+	display: block;
+	text-align:center ;
+}

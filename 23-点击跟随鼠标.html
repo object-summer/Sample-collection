@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#image {
+				width: 99px;
+				position: absolute;
+				left: 0;
+				top:0;
+			}
+		</style>
+		<!--<script src="js/testzhuanyong.js" type="text/javascript"></script>-->
+	</head>
+	<body>
+		<img src="images/img.jpg" id="image" alt="" />
+	</body>
+	<script>
+    var image = document.getElementById("image");
+    document.onclick = function(event) {
+        var event = event || window.event;
+        targetX = event.clientX - image.offsetWidth /2;
+        targetY = event.clientY - image.offsetHeight /2;
+    }
+    // 缓动
+    var     leaderX = 0,
+            leaderY= 0,
+            targetX = 0,
+            targetY = 0;
+    setInterval(function() {
+        leaderX = leaderX + (targetX - leaderX) / 10;
+        leaderY = leaderY + (targetY - leaderY) / 10;
+        image.style.left = leaderX + "px";
+        image.style.top = leaderY + "px";
+     },10)
+</script>
+</script>
+</script>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>放大镜</title>
+		<link rel="stylesheet" type="text/css" href="css/base.css"/>
+		<style type="text/css">
+			*{padding: 0;margi n: 0;}
+			.box {
+				position: relative;
+				margin: 100px;
+				width: 350px;
+				height: 350px;
+			}
+			.small {
+				position: relative;
+				cursor: pointer;
+			}
+			.mask {
+				position: absolute;
+				width: 100px;
+				height: 100px;
+				top: 0;
+				left: 0;
+				background-color: #191D3A;
+				opacity: 0.4;
+				display: none;
+				/*z-index: 5;*/
+			}
+			.big {
+				position: absolute;
+				width: 450px;
+				height: 450px;
+				overflow: hidden;
+				left:360px;	
+				top: 0;
+				border: 1px solid #000000;
+				display: none;
+			}
+			.big img {
+				position: absolute;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box" id="box">
+			<div class="small">
+				<img src="images/001.jpg"/>
+				<div class="mask"></div>
+			</div>
+			<div class="big">
+				<img src="images/0001.jpg"/>
+			</div>
+		</div>
+
+	</body>
+</html>
+<script type="text/javascript">
+/*24再次写放大镜
+ * 1、首先是css以及布局
+ *	1.1大盒子里面的img一定要有position：absolute；不然不会动
+ * 2、获取各个元素
+ * 3、鼠标移处和仪进后显示和隐藏大盒子和图片
+ * 4、遮罩层（var event = event || window.event;）
+ * 	4.1遮罩层移动随鼠标的xy，首先定义想x,y
+ * 	4.1.1 不能超过小盒子的内部 （鼠标的坐标clientX-小盒子的左侧到文档的距离this(small).offsetLeft - 遮罩层的1/2offsetwidth ）
+ * 		x = event.clientX - this.offsetParent.offsetLeft - mask.offsetWidth/2;
+ * 5、判断x和y（遮罩层mask的中心）的大小是否超出了small的盒子
+ * 	5.1 x<0则让遮罩层不要超出左侧，一支等于0
+ * 	5.2 x>small.offsetWidth - mask.offsetWidth(即mask的中心不要超过small最右面的地方)
+ * 6、让mask的left = x top=y
+ * 7、让大盒子的图片的left为   -x*（大盒子/小盒子）[到达等比例的水品]
+ * */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var box = document.getElementById("box")
+var small = box.children[0];
+var big = box.children[1]
+var mask = small.children[1];
+var bgimg = big.children[0];
+//鼠标移动到左边的盒子时，显示右边大图盒子
+small.onmouseover = function(){
+	mask.style.display = "block";
+	big.style.display = "block";
+}
+small.onmouseout = function(){
+	big.style.display = "none";
+	mask.style.display = "none";
+}
+//mask盒子岁鼠标的变化而变化
+var x = 0;
+var y = 0;
+small.onmousemove = function(event){
+	var event = event || window.event;
+	/*这个xy是遮罩层mask的中心*/
+	x = event.clientX - this.offsetParent.offsetLeft - mask.offsetWidth / 2;
+	y = event.clientY - this.offsetParent.offsetTop - mask.offsetHeight /2; 
+	/*offsetParent:指定最近的祖先定位祖先元素,offsetLeft, offsetTop:计算子元素相对offsetParent的偏移距离*/
+	
+	console.log('mouse:x'+event.clientX+"-y:"+event.clientY)
+	console.log("mask:x:"+x+"y:"+y)
+	if(x<0){
+		x =0 ;
+	}else if(x > small.offsetWidth - mask.offsetWidth){
+		x = this.offsetWidth - mask.offsetWidth
+	}
+	if(y<0){
+		y =0 ;
+	}else if(y > small.offsetHeight - mask.offsetHeight){
+		y = this.offsetHeight - mask.offsetHeight
+	}
+	mask.style.left = x + "px";
+	mask.style.top = y + "px";
+	bgimg.style.left =  -x *  big.offsetWidth /small.offsetWidth + "px";
+	bgimg.style.top =  -y *  big.offsetHeight /small.offsetHeight + "px";
+//	console.log(big.offsetWidth /small.offsetWidth)
+	console.log("bigx:"+bgimg.style.left+"y:"+bgimg.style.top)
+}
+</script>

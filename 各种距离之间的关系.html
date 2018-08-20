@@ -1,0 +1,104 @@
+<!--<!DOCTYPE html>-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    	*{padding: 0;margin: 0;}
+     #wrap {
+     	position: relative;
+        border : 3px solid red;
+        width: 600px;
+        height : 600px;
+        /*margin : 50px auto;*/
+    }
+    #inner {
+        padding : 100px;
+        width: 300px;
+        height:200px;
+        margin:50px auto;
+        border:20px solid blue;
+        overflow: auto;
+    }
+    #content{
+        width: 200px;
+        height:800px;
+        border:1px solid black;
+      }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div id="inner">
+            <div id="content"></div>
+        </div>
+    </div>
+    <input type="button" name="btn" id="btn" value="ceshi" />
+</body>
+</html>
+<!--<script src="js/jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>-->
+<script type="text/javascript">
+	/*第一层wrap*/
+	var wrap = document.getElementById('wrap')
+	/*第二层inner*/
+	var inner = document.getElementById('inner');
+	/*第三层，content最里层的盒子*/
+	var content = document.getElementById('content');
+	
+	
+	
+	/*offsetWidth，有width+padding+border+滚动条，没有margin*/
+	console.log('这是offset的测试，width+padding+border+滚动条')
+	console.log(inner.offsetWidth);
+	console.log(content.offsetHeight);
+	/*offsetLeft,其返回自己的x坐标，{1、已经定位的，相对于祖先元素的x坐标2、没定位的，相对于文档（自己border外面的到浏览器最左面的距离）}
+	 * 其xy值是border以外的值，自己本身的margin是不算作内
+	 * 因此我们会看到下面的inner要比wrap大33（wrap.border是3+inner.margin是30）
+	 * */
+	console.log('我在测试offsetLeft在各个浏览器的兼容性，边框靠在最左侧')
+	console.log(wrap.offsetLeft );
+	console.log(inner.offsetLeft );
+	console.log(content.offsetLeft );
+/*	console.log(wrap.offsetTop);
+	console.log(inner.offsetTop);
+	console.log(content.offsetTop);*/
+	console.log('chrome：0，30,150')
+	console.log('edge+ie10+ie9+ie8+ie7：0，30,150')
+	console.log('firfox：0，30,150')
+	console.log('------')
+	
+	
+	
+	/*clientWidth，有width+padding，没有border+margin+滚动条*/
+	console.log('这是client的测试，通常等于border')
+	console.log(inner.clientWidth);
+	console.log(content.clientHeight);
+	/*clientLeft,返回元素的内边距的外边缘和他的边框的外边缘的水平距离和垂直距离，通常这些值就等于左边和上边的边框宽度。*/
+	console.log(wrap.clientLeft );
+	console.log(inner.clientLeft );
+	console.log(content.clientLeft );
+	console.log(wrap.clientTop);
+	console.log(inner.clientTop);
+	console.log(content.clientTop);
+	console.log('------')
+	
+	/*scrollWidth,有width+padding+溢出来的尺寸，没有border+margin+滚动条（如果没有溢出则和client是一样的）*/
+	console.log('这是scroll的测试，width+padding+溢出来的尺寸')
+	console.log(content.scrollWidth);
+	console.log(content.scrollHeight);
+	/*scrollLeft,指定的是元素的滚动条的位置*/
+	console.log(wrap.scrollTop);
+	console.log(inner.scrollWidth);
+	console.log(content.scrollTop);
+	/*$('#btn').on('click',function(){
+			alert($('#content').scrollTop())		
+		}*/
+	
+	/*screen.width/height属性声明了显示浏览器的屏幕的宽度，以像素计。*/
+	console.log(screen.width);
+	console.log(screen.height);
+	console.log('电脑屏幕是的宽高：x：'+screen.width+"y:"+screen.height)
+	console.log('浏览器clientWidth：'+document.body.clientWidth)
+	console.log(window.screenLeft)
+	console.log(window.screenX)
+</script>

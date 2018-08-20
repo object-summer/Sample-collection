@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="{CHARSET}">
+		<title>切换公告栏</title>
+		<script src="js/jquery-3.1.1.js"></script>
+		<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/tab.css"/>
+		<style type="text/css">
+			*{
+				text-decoration: none;
+			}*
+			
+			.one{
+				width: 200px;
+				height: 200px;
+				background-color: antiquewhite;
+			}
+			.one li{
+				display:inline-block;
+				font-size: 18px;
+				margin-top: 10px;
+				padding-right: 6px;
+}
+			.sec-one{
+				margin-top:10px;
+				position: absolute;
+				display: none;
+			}
+			.sec-two{
+				margin-top:10px;
+				position:absolute;
+				display:none;
+			}
+			.sec-one li{
+				font-size: 15px;
+				display: block;
+				margin-top: 10px;
+			}
+			.sec-two li{
+				font-size: 15px;
+				display: block;
+				margin-top: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="one">	
+		<ul>
+			<li class="index-one">
+				<a href="#">women</a>
+				<ul class="sec-one">
+					<li>1</li>
+					<li>2</li>
+					<li>3</li>
+					<li>4</li>
+				</ul>
+			</li>
+			<li class="index-two">
+				<a href="#">wode</a>
+				<ul class="sec-two">
+					<li>7</li>
+					<li>6</li>
+					<li>6</li>
+					<li>5</li>
+				</ul>
+			</li>
+		</ul>
+		</div>
+		
+		
+		
+		
+		<div class="nav">
+			<div class="menu">
+				<ul>
+					<li class="jsone"><a href="#">one</a></li>
+					<li class="jstwo"><a href="#">two</a></li>
+					<li class="jsthree"><a href="#">three</a></li>
+				</ul>
+			</div>
+			<div class="nav-one">
+				<ul class="sec-1">
+					<li>01</li>
+					<li>02</li>
+					<li>03</li>
+					<li>04</li>
+				</ul>
+			</div> 
+			<div class="nav-two">
+				<ul class="sec-2">
+					<li>11</li>
+					<li>12</li>
+					<li>13</li>
+					<li>14</li>
+				</ul>
+			</div>
+			<div class="nav-three" id="nav-three" onclick="three">
+				<ul class="sec-3">
+					<li>21</li>
+					<li>22</li>
+					<li>23</li>
+					<li>24</li>
+				</ul>
+			</div>
+		</div>
+		
+	</body>
+</html>

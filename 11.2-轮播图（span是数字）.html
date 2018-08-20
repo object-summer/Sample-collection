@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<style type="text/css">
+			*{margin: 0; padding: 0;}
+			ul,ol{list-style: none;}
+			.box_11 {
+				width: 730px;
+				height: 458px;
+				margin: 100px auto;
+				position: relative;
+				overflow: hidden;
+			}
+			ul#main {
+				width: 3650px;
+				overflow: hidden;
+				position: absolute;
+			}
+			ul#main li {
+				float: left;
+				top: 0;
+				left: 0;
+			}
+			ul#main  li img {
+				width: 730px;
+				height: 458px;
+				
+			}
+			#slider {
+				overflow: hidden;
+				height: 458px;
+				width: 730px;
+			}
+			.circle {
+				z-index: 1;
+				position: absolute;
+				height: 20px;
+				cursor: pointer;
+				left: 50%;
+				margin-left: -50px;
+				bottom: 10px;
+			}
+			.circle span {
+				text-align: center;
+				line-height: 18px;
+				margin-right: 5px;
+				width: 18px;
+				height: 18px;
+				float: left;
+				font-size: 0;
+				border-radius: 50%;
+				background-color: #7cb706;
+				transition: 0.9s;
+			}
+			.clearfix{
+				clear: both;
+			}
+			.circle span.current {
+				background-color: #fff;
+			}
+			/*左右按钮*/
+			.arrow {
+				width: 100%;
+				z-index: 2;
+			}
+			.arrow a {
+				display: inline-block;
+				width: 76px;
+				height: 112px;
+				position: absolute;
+				top: 50%;
+				margin-top: -38px;
+			}
+			.arrow a img {
+				width: 100%;
+				height: 100%;
+			}
+			.prev {
+				left: 0;
+				margin-left: 10px;
+			}
+			.next {
+				right: 0;
+				margin-right: 10px;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="box_11" id="scroll">
+			<div class="slider clearfix" id="slider">
+				<ul id="main" class="clearfix">
+					<li><img src="images/38_img/l1.jpg"/></li>
+					<li><img src="images/38_img/l2.jpg"/></li>
+					<li><img src="images/38_img/l3.jpg"/></li>
+					<li><img src="images/38_img/l4.jpg"/></li>
+					<li><img src="images/38_img/l5.jpg"/></li>
+				</ul>
+				<!--在实际的网页设计中，图pain和序号的长度是由后台控制的，所以这里先删除span序号，勇js来写-->
+				<!--<div class="circle">
+						<span>1</span>
+						<span>2</span>
+						<span>3</span>
+						<span>4</span>
+						<span>5</span>
+				</div>-->
+				<!--这是两个左右按钮-->
+				<div class="arrow">
+					<a href="javascript:void(0)" class="prev" id="prev"><img src="images/38_img/prev.png"/></a>
+					<a href="javascript:void(0)" class="next" id="next"><img src="images/38_img/next.png"/></a>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	var slider = document.getElementById("slider");
+	var circle = document.createElement("div");
+	var prev = document.getElementById('prev');
+	var next = document.getElementById('next')
+	circle.setAttribute("class","circle clearfix");
+	slider.appendChild(circle);
+	//生成circle大盒子
+	var uls = document.getElementById("main");
+	var lis = document.getElementById("main").children;//ul的所有的孩子
+//			uls.appendChild(uls.children[0].cloneNode(true));
+	for(var i=0; i<lis.length; i++){
+		var newspan = document.createElement("span");
+		newspan.innerHTML = i+1 ;
+		circle.appendChild(newspan);
+		var child = circle.children;
+		child[0].setAttribute("class","current");
+	}
+	//点击哪一个，哪一个图片移动过来
+	var spans = document.getElementsByTagName('span');
+	for(var j= 0;j<spans.length;j++){
+		spans[j].index = j;
+		spans[j].onclick = function(){
+			for(var z =0 ; z<spans.length;z++){
+				spans[z].classList.remove('current')
+			}
+			spans[this.index].classList.add('current')
+			uls.style.left = -730*(spans[this.index].innerHTML-1)  + "px";
+		}
+	}
+	/*点击右侧按钮，向右移动
+	 * 点击next按钮
+	 * 定义num=0
+	 * 点击一次num+=1
+	 * uls走一个距离：uls.style.left=730*num +'px';
+	 * */
+	var num =0;
+	function nextpic(){
+		next.onclick = function(){
+			num++;	
+			if(num>4){
+				num=0
+			} 
+	//				console.log(num)
+			//让uls的left为num*730px
+			uls.style.left = -730*(num)  + "px";
+			for(var y=0;y<spans.length;y++){
+				spans[y].classList.remove('current');					
+			}
+			spans[num].classList.add('current')
+			
+		}
+	}
+	prev.onclick =function(){
+		num--;
+		if(num<0){
+			num=4
+		}
+		uls.style.left = -730*num  + "px";
+		for(var y=0;y<spans.length;y++){
+			spans[y].classList.remove('current');					
+		}
+		spans[num].classList.add('current') 
+	}
+	var timer = setInterval(nextpic(),10)
+</script>

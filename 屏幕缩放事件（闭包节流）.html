@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="demo"></div>
+	</body>
+</html>
+<script type="text/javascript">
+	var demo = document.getElementById("demo");
+	var num =0;
+	window.onresize =throttle( function(){
+		demo.innerHTML =window.innerWidth  || document.getElement.clientWidth;
+		num++;
+		console.log(num);
+	},300)
+	
+	function throttle(fn,delay){//闭包  节流
+		var timer = null;
+		return function(){
+			clearInterval(timer);
+			timer = setInterval(fn,delay);
+		}
+	}
+</script>

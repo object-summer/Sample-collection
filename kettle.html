@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+</html>
+<script type="text/javascript">
+	/*思路
+	 * 盖壶嘴--水温>沸点--鸣叫---可以喝了
+	 * 没盖壶嘴--水温>沸点--不叫--没人理--继续烧--水减少到熔丝--水壶烧了--断电
+	 * 
+	 * 
+	 * 
+	 * if（壶嘴盖了）{
+	 * 	if(水温>沸点){
+	 * 	if（鸣叫）{
+	 * 	alert（"水可以喝了"）
+	 * }
+	 * }
+	 * }else {
+	 * 	if(水温>沸点){
+	 * 		if（不叫）{
+	 * 			if（继续烧）{
+	 * 				if（税减少到熔丝位置）{
+	 * 					if（水壶烧了）{
+	 * 						if（断电）{
+	 * 							alert（'没水喝！！！'）		
+	 * }
+	 * }
+	 * }
+	 *		 }
+	 *	 }
+	 * }
+	 * }
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * */
+	
+	/*面向对象版的水壶的水是否烧开*/
+	var kettle = function (){
+		this.temperature = ''
+		this.boilingPoint  = 100
+		this.Spout = ''
+		this.isScreaming = 'true'
+	}
+	kettle.prototype = {
+		isScreaming : function(){
+			if(){
+				
+			}
+		},
+		checkTemperature : function (){
+			if(this.temperature >= this.boilingPoint){
+				alert("Hurry up！！！水开了")
+			}else {
+				alert("waitting a minute!!!")
+			}
+		}
+	}
+</script>

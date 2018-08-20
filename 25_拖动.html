@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/base.css">
+    <style type="text/css">
+
+        .scroll {
+            width: 400px;
+            height:10px;
+            background-color: #666666;
+            opacity: 0.4;
+            margin: 100px;
+            position: relative;
+        }
+        .bar {
+            position: absolute;
+            top: -5px;
+            left:0;
+            width: 8px;
+            height: 20px;
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+<div class="scroll" id="scroll">
+    <div class="bar"></div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+/*25-拖动条*/
+var scroll = document.getElementById("scroll");
+var bar = scroll.children[0];
+bar.onmousedown = function(event){
+    var event = event || window.event;
+    var leftval = event.clientX - scroll.offsetLeft;
+    scroll.onmousedown = function(event){
+        var event = event || window.event;
+        bar.style.left = event.clientX - leftval - scroll.offsetLeft +"px";
+    };
+//  scroll.onmousemove = function(event){
+//      var event = event || window.event;
+//      bar.style.left = event.clientX - leftval - scroll.offsetLeft +"px";
+//  }
+/*bar.onmouseup = function(){
+    bar.style.left = event.clientX - leftval - scroll.offsetLeft +"px";
+}*/
+}
+</script>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="url">
+			1
+		</div>
+	</body>
+	<script src="js/12.js" type="text/javascript" charset="utf-8"></script>
+</html>
+<script>
+var url = 'http: //www.a.com/index.php?route=main&nav&user=tom&id=123&profile';
+
+var querys = url
+    .substring(url.indexOf('?') + 1)
+    .split('&');
+var result={};
+for(var i=0;i<querys.length;i++){
+    var temp=querys[i].split('=');
+    if(temp.length<2){
+        result[temp[0]]='';
+    }else{
+        result[temp[0]]=temp[1];
+    }
+}
+console.log(result);
+var l = document.getElementById('url');
+l.innerHTML = result;
+</script>

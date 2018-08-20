@@ -1,0 +1,90 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>懒加载</title>  
+    <style>  
+        body,html{width:100%;margin:0;padding:0;}  
+        #box{width:100%;}  
+        #box ul{width:840px;padding:0px;margin:0 auto;overflow:hidden;}  
+        #box ul li{float:left;list-style: none;width:190px;background:#fff;padding:5px;margin:5px;box-shadow:0 0 5px #333;}  
+        #box ul li img{width:100%;transition:1s;}  
+    </style>  
+</head>  
+<body>  
+    <div id="box">  
+    	<ul>        
+        <li data-src="http://cover.read.duokan.com/mfsv2/download/fdsc3/p01N203pHTU7/Wr5314kcLAtVCi.jpg!t"><i></i></li>
+        <li data-src="http://77fkxu.com1.z0.glb.clouddn.com/20160308/1457402219_73571.jpg"><i></i></li>
+        <li data-src="http://cover.read.duokan.com/mfsv2/download/fdsc3/p01a3SXHo2hZ/XYAC5TLk4uYWXn.jpg!t"><i></i></li>
+        <li data-src="http://pic1.cxtuku.com/00/16/18/b3809a2ba0f3.jpg"><i></i></li>
+        <li data-src="http://img.bitscn.com/upimg/allimg/c150708/14363B06253120-6060O.jpg"><i></i></li>
+        <li data-src="http://pic.58pic.com/58pic/17/18/97/01U58PIC4Xr_1024.jpg"><i></i></li>
+        <li data-src="http://cover.read.duokan.com/mfsv2/download/fdsc3/p015trgKM7vw/H0iyDPPneOVrA4.jpg!t"><i></i></li>
+        <li data-src="http://77fkxu.com1.z0.glb.clouddn.com/20160308/1457402219_73571.jpg"><i></i></li>
+        <li data-src="http://imgsrc.baidu.com/baike/pic/item/2f9cbdcc5e0bcf5c00e9283b.jpg"><i></i></li>
+        <li data-src="http://pic1.cxtuku.com/00/16/18/b3809a2ba0f3.jpg"><i></i></li>
+        <li data-src="http://img.bitscn.com/upimg/allimg/c150708/14363B06253120-6060O.jpg"><i></i></li>
+        <li data-src="http://pic.58pic.com/58pic/17/18/97/01U58PIC4Xr_1024.jpg"><i></i></li>
+        <li data-src="http://cover.read.duokan.com/mfsv2/download/fdsc3/p015trgKM7vw/H0iyDPPneOVrA4.jpg!t"><i></i></li>
+        <li data-src="http://77fkxu.com1.z0.glb.clouddn.com/20160308/1457402219_73571.jpg"><i></i></li>
+        <li data-src="http://imgsrc.baidu.com/baike/pic/item/2f9cbdcc5e0bcf5c00e9283b.jpg"><i></i></li>
+        <li data-src="http://pic1.cxtuku.com/00/16/18/b3809a2ba0f3.jpg"><i></i></li>
+        <li data-src="http://img.bitscn.com/upimg/allimg/c150708/14363B06253120-6060O.jpg"><i></i></li>
+    </ul>
+        
+    </div>  
+    <script src="../js/jquery-3.3.1.js"></script>  
+  <script type="text/javascript">
+  	/* 获取节点 */    
+var oUl = document.getElementsByTagName('ul')[0];
+var aLi = oUl.getElementsByTagName('li');
+/* 创建img标签函数 */    
+function createImg(obj){   
+    var src = '';    
+    if(obj.dataset.src){
+        src = obj.dataset.src;
+    }else{
+        src = obj.getAttribute('data-src');
+    }    
+    if(obj.children.length <= 1){        
+        var img = document.createElement('img');
+        img.src = src;
+        obj.appendChild(img);
+    }
+}/* 获取节点 */    
+var oUl = document.getElementsByTagName('ul')[0];
+var aLi = oUl.getElementsByTagName('li');
+/* 创建img标签函数 */    
+function createImg(obj){   
+    var src = '';    
+    if(obj.dataset.src){
+        src = obj.dataset.src;
+    }else{
+        src = obj.getAttribute('data-src');
+    }    
+    if(obj.children.length <= 1){        
+        var img = document.createElement('img');
+        img.src = src;
+        obj.appendChild(img);
+    }
+}/* 获取节点 */    
+var oUl = document.getElementsByTagName('ul')[0];
+var aLi = oUl.getElementsByTagName('li');
+/* 创建img标签函数 */    
+function createImg(obj){   
+    var src = '';    
+    if(obj.dataset.src){
+        src = obj.dataset.src;
+    }else{
+        src = obj.getAttribute('data-src');
+    }    
+    if(obj.children.length <= 1){        
+        var img = document.createElement('img');
+        img.src = src;
+        obj.appendChild(img);
+    }
+}
+  </script>
+</body>  
+</html>

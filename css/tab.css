@@ -1,0 +1,60 @@
+.nav{
+	position:;
+	width: 400px;
+	height: 400px;
+	background-color:#953132;
+}
+.nav li{
+	list-style: none;
+}
+
+.menu{
+	position: absolute;
+	float:left:
+	margin-top:30px;
+	display:inline-block;
+}
+.menu ul{
+	float:left;
+	display:block;
+}
+.menu ul li{
+	float:left;
+	margin-left:20px;
+}
+
+
+.nav-one,.nav-three,.nav-two{
+	float: left;
+	position: absolute;
+	margin-top: 25px;
+}
+.nav-two{
+	display:block;
+}
+.nav-two ul{
+	display: block;
+}
+.nav-two ul li{
+	margin-left: 60px;
+}
+
+.nav-one{
+	display:block;
+}
+.nav-one ul{
+	display: block;
+}
+.nav-one ul li{
+	margin-left: 23px;
+}
+
+.nav-three{
+	display:block;
+}
+.nav-three ul{
+	display: block;
+}
+.nav-three ul li{
+	margin-left: 110px;
+}

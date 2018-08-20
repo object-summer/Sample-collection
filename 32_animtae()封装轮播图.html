@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/base.css">
+
+    <style type="text/css">
+        body{margin: 0 auto;}
+        .box{
+            text-align: center;
+            /*overflow: hidden;*/
+            width: 100%;
+            height: 100%;
+        }
+        .scroll {
+            margin: 100px;
+            position: relative;
+            width: 500px;
+            height: 200px;
+            overflow: hidden;
+        }
+        ul {
+            position: absolute;
+            text-align: center;
+            width: 3000px;
+            overflow: hidden;
+            left:0;
+            top:0;
+        }
+        ul li {
+            float: left;
+        }
+        ol {
+            position: absolute;  
+            width: 200px;
+            height: 20px;
+            right: 0;
+            bottom: 10px;
+            z-index: 999;
+            zoom: 1;
+        }
+        ol li {
+            width: 20px;
+            height: 20px;
+            margin-left:10px;
+            font-size: 16px;
+            color: #fff;
+            float: left;
+        }
+        .cerrent {
+            background-color: #7FFFD4;
+        }
+    </style>
+</head>
+<body>
+<div class="box" id="box">
+    <div class="scroll" id="scroll">
+        <ul id="ul">
+            <li><img src="images/32_img/1.jpg" alt=""></li>
+            <li><img src="images/32_img/2.jpg" alt=""></li>
+            <li><img src="images/32_img/3.jpg" alt=""></li>
+            <li><img src="images/32_img/4.jpg" alt=""></li>
+            <li><img src="images/32_img/5.jpg" alt=""></li>
+        </ul>
+    </div>
+
+</div>
+
+</body>
+</html>
+<script type="text/javascript">
+	/*32_调用animate（）函数来实现前面案列的轮播图*/
+	/*出现错误了！！！！！！图片来回切换卡住了
+	 编写定时器
+	 注意时间效率*/
+	//1.准备的animate()动画函数，备调用
+	function animate(obj,target) {
+		var speed = obj.offsetLeft < target ? 15 : -15;//让增量apeed，选择是加5还是减5
+		obj.timer = setInterval(function () {
+			var result = target - obj.offsetLeft;//把到目标位置的距离给result
+			obj.style.left = obj.offsetLeft + speed + "px";
+			if (Math.abs(result) <= 15) {//判断result的绝对值是否是小于或是等于5
+				clearInterval(obj.timer);
+				obj.style.left = target + "px";//在范围之内则直接定在目标位置处
+			}
+		}, 10)
+	}
+	//2.创建最后一个li 和 ol和ol的li
+	var scroll = document.getElementById("scroll");
+	var box = document.getElementById("box");
+	var ul = document.getElementById("ul");
+	var ullis = ul.children;
+	//console.log(ullis.length);
+	//克隆li放在最后，完成无缝切换
+	ul.appendChild(ul.children[0].cloneNode(true));
+		console.log(ullis.length);
+		var ol = document.createElement("ol");//创建ol
+		scroll.appendChild(ol);//把ol追加在scroll后面
+		for (var i = 0; i < ullis.length - 1; i++) {
+			var li = document.createElement("li");//创建ol下面的li
+			li.innerHTML = i + 1;//使内容添加数字随i+1
+			ol.appendChild(li);
+		}
+		ol.children[0].className = "cerrent";//让ol下的第一个li样式为cerrent;
+	//3.开始动画部分
+	var ollis = ol.children;
+	for(var i=0; i<ollis.length;i++)
+	{
+		ollis[i].index = i;  // 获得当前第几个小li 的索引号
+		ollis[i].onclick = function() {
+			for(var j=0;j<ollis.length;j++)
+			{
+				ollis[j].className = "";  // 所有的都要清空
+			}
+			this.className = "cerrent";
+			animate(ul,-this.index*500);
+			// 调用动画函数  第一个参数  谁动画     第二个  走多少
+			square = key = this.index;  // 当前的索引号为主
+		}
+	}
+</script>

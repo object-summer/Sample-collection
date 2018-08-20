@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>全文</title>
+    <style type="text/css">
+        .box {
+
+            width:100%;
+            height: 100%;
+        }
+        .box-con {
+            margin: 0 auto;
+            width:300px;
+        }
+        .texts .text p{
+            margin-top: 30px;
+        }
+        .texts .text p.hide {
+            overflow: hidden;
+            height: 40px;
+        }
+        .texts .text p.show {
+            overflow: auto;
+        }
+        i {
+            color: red;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="box-con">
+        <div class="texts">
+            <div class="text"id="text">
+                <p id="ps" class="hide ps">　蒹葭苍苍，白露为霜。所谓伊人，在水一方。
+
+                    溯洄从之，道阻且长。溯游从之，宛在水中央。
+
+                    蒹葭萋萋，白露未晞。所谓伊人，在水之湄。
+
+                    溯洄从之，道阻且跻。溯游从之，宛在水中坻。
+
+                    蒹葭采采，白露未已。所谓伊人，在水之涘。
+
+                    溯洄从之，道阻且右。溯游从之，宛在水中沚。
+
+                </p>
+                <i class="btn">显示全文</i>
+
+                <p class="hide ps">　蒹葭苍苍，白露为霜。所谓伊人，在水一方。
+
+                    溯洄从之，道阻且长。溯游从之，宛在水中央。
+
+                    蒹葭萋萋，白露未晞。所谓伊人，在水之湄。
+
+                    溯洄从之，道阻且跻。溯游从之，宛在水中坻。
+
+                    蒹葭采采，白露未已。所谓伊人，在水之涘。
+
+                    溯洄从之，道阻且右。溯游从之，宛在水中沚.
+
+                </p>
+                <i class="btn">显示全文</i>
+
+                <p class="hide">　蒹葭苍苍，白露为霜。所谓伊人，在水一方。
+
+                    溯洄从之，道阻且长。溯游从之，宛在水中央。
+
+                    蒹葭萋萋，白露未晞。所谓伊人，在水之湄。
+
+                    溯洄从之，道阻且跻。溯游从之，宛在水中坻。
+
+                    蒹葭采采，白露未已。所谓伊人，在水之涘。
+
+                    溯洄从之，道阻且右。溯游从之，宛在水中沚。
+                </p>
+                <i class="btn ps">显示全文</i>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    window.onload = function() {
+        function $(id) {return document.getElementById(id);}
+        var text = $("text");
+        var btn = $("btn");
+        var btns = document.getElementsByClassName("btn");
+        var ps = document.getElementsByClassName("ps");
+        for(var i = 0; i<btns.length; i++){
+//            alert(ps.length)
+            this.index = i;
+            btns[i].onclick  = function(){
+                go();
+            }
+        }
+//        var that = this.index;
+        function go(){
+            console.log(that);
+            for(var j=0; j< ps.length; j++){
+                ps[j].style.className = " ";
+            }
+            ps[index].className = "show ps";
+            alert()
+        }
+
+    }// 千万别删除了
+
+</script>

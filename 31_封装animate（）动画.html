@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/base.css">
+    <style type="text/css">
+
+        #box0 {
+            margin: 50px auto  ;
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: #000;
+        }
+    </style>
+</head>
+<body>
+<button id="btn0">200</button>
+<button id="btn1">400</button>
+<div id="box0"></div>
+<div id="box1"></div>
+</body>
+</html>
+<script type="text/javascript">
+	/*31_封装匀速运动动画aniate（）*/
+	var btn200 = document.getElementById("btn0");
+	var btn400 = document.getElementById("btn1");
+	var box0 = document.getElementById("box0");
+	var box1 = document.getElementById("box1");
+	btn200.onclick = function(){
+		//开始封装移动动画animate（）
+		animate(box0,200);
+	}
+	btn400.onclick = function(){
+		animate(box0,400);
+	}
+
+	//animate()动画函数
+	function animate(obj,target){
+		var speed = obj.offsetLeft < target ? 5 : -5;//让增量apeed，选择是加5还是减5
+		obj.timer = setInterval(function(){
+			var result = target - obj.offsetLeft;//把到目标位置的距离给result
+			obj.style.left = obj.offsetLeft + speed + "px";
+			if(Math.abs(result) <= 5){//判断result的绝对值是否是小于或是等于5
+				clearInterval(obj.timer);
+				obj.style.left = target + "px";//在范围之内则直接定在目标位置处
+			}
+		},20)
+	}/*发现了一个问题，自己不知道该怎么解决，当连续切换200和400按钮时box0卡住了*/
+</script>

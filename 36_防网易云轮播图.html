@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/base.css">
+   <script src="js/jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/animate.js"></script>
+    <!--<script src="js/testzhuanyong.js"></script>-->
+    <style type="text/css">
+        .w-slider {
+            width:310px;
+            height: 265px;
+            overflow: hidden;
+            margin: 100px auto;
+            position: relative;
+        }
+        .slider {
+            width: 310px;
+            height: 220px;
+        }
+        .slider-main {
+            width: 620px;
+            height: 220px;
+        }
+        .slider-main-img {
+            position: absolute;
+            top:0;
+            left:0;
+            width: 310px;
+            height: 220px;
+            background-color: pink;
+        }
+        .slider-main-img img {
+            vertical-align: top;
+            width: 100%;
+        }
+        .slider-ctrl {
+            height: 45px;
+            text-align: center;
+        }
+        .slider-ctrl-con {
+            width: 24px;
+            height: 20px;
+            display:inline-block;
+            background:url("images/36_image/icon.png") no-repeat -24px -782px;
+            margin: 0 5px;
+            cursor: pointer;
+            text-indent: -20em;
+            overflow: hidden;
+        }
+        .current {
+            background-position: -24px -762px;
+        }
+        .slider-ctrl-prev,
+        .slider-ctrl-next {
+            position: absolute;
+            top:50%;
+            margin-top: -35px;
+            background: url("images/36_image/icon.png") no-repeat 6px top;
+            width:30px;
+            height: 35px;
+            opacity: 0.8;
+            cursor: pointer;
+        }
+        .slider-ctrl-prev {
+            left: 0;
+        }
+        .slider-ctrl-next {
+            right: 0;
+            background-position: 0 -44px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="w-slider" id="box_slider">
+    <div class="slider" id="slider">
+        <div class="slider-main" id="slider_main_block">
+            <div class="slider-main-img"><img src="images/36_image/1.jpg" alt="" class="src"></div>
+            <div class="slider-main-img"><img src="images/36_image/2.jpg" alt="" class="src"></div>
+            <div class="slider-main-img"><img src="images/36_image/3.jpg" alt="" class="src"></div>
+            <div class="slider-main-img"><img src="images/36_image/4.jpg" alt="" class="src"></div>
+            <div class="slider-main-img"><img src="images/36_image/5.jpg" alt="" class="src"></div>
+            <div class="slider-main-img"><img src="images/36_image/6.jpg" alt="" class="src"></div>
+        </div>
+    </div>
+    <div class="slider-ctrl" id="slider_ctrl">
+        <span class="slider-ctrl-prev" id="slider_ctrl_prev"></span>
+        <!--自动生成span-->
+        <span class="slider-ctrl-next" id="slider_ctrl_next"></span>
+    </div>
+</div>
+
+</body>
+</html>
+<script type="text/javascript">
+	function $(id){return document.getElementById(id);}
+	var wrap = $("#wrap");
+	var arrow = $("arrow");
+	var slider = $("slider");
+	var lis = document.getElementsByTagName("li");
+	wrap.onmouseover = function () {
+		animate(arrow, {"opacity":100});
+	}
+	wrap.onmouseout = function () {
+		animate(arrow, {"opacity":0});
+	}
+	var josn
+	var wrap = document.getElementById("wrap");  // 大盒子
+	var arrow = document.getElementById("arrow");  // 三角
+	var slider = document.getElementById("slide");
+	var lis = slider.getElementsByTagName("li");  // 所有要操作的盒子
+	wrap.onmouseover = function() {  // 鼠标经过显示和隐藏 左右两个箭头
+		animate(arrow,{'opacity':100});
+	}
+	wrap.onmouseout = function() {
+		animate(arrow,{'opacity':0});
+	}
+	//  存储了每个图片的信息
+	var json = [
+		{   //  1
+			width:400,
+			top:20,
+			left:50,
+			opacity:20,
+			z:2
+		},
+		{  // 2
+			width:600,
+			top:70,
+			left:0,
+			opacity:80,
+			z:3
+		},
+		{   // 3
+			width:800,
+			top:100,
+			left:200,
+			opacity:100,
+			z:4
+		},
+		{  // 4
+			width:600,
+			top:70,
+			left:600,
+			opacity:80,
+			z:3
+		},
+		{   //5
+			width:400,
+			top:20,
+			left:750,
+			opacity:20,
+			z:2
+		}
+	];
+
+
+	function change(){
+		for(var i=0; i<lis.length; i++){
+			animate(lis[i].width)
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	//  存储了每个图片的信息
+	var json = [
+		{   //  1
+			width:400,
+			top:20,
+			left:50,
+			opacity:20,
+			z:2
+		},
+		{  // 2
+			width:600,
+			top:70,
+			left:0,
+			opacity:80,
+			z:3
+		},
+		{   // 3
+			width:800,
+			top:100,
+			left:200,
+			opacity:100,
+			z:4
+		},
+		{  // 4
+			width:600,
+			top:70,
+			left:600,
+			opacity:80,
+			z:3
+		},
+		{   //5
+			width:400,
+			top:20,
+			left:750,
+			opacity:20,
+			z:2
+		}
+	];
+	//  两个按钮点击事件
+	// 函数节流
+	var jieliu = true; //  用来控制函数节奏的 变量
+	var as = arrow.children;
+	change();
+	for(var k in as)
+	{
+		as[k].onclick = function() {
+			if(this.className == "prev")
+			{
+				//  alert("左侧")  移除第一个   放到json 最后一个
+				if(jieliu == true)
+				{
+					change(false);
+					jieliu = false;  // 点击完毕之后，立马取反
+				}
+
+			}
+			else
+			{
+				// alert('右侧');   把 最后一个json 删除   并且把最后一个添加到json 第一个位置
+				if(jieliu == true)
+				{
+					change(true);
+					jieliu = false;  // 点击完毕之后，立马取反
+				}
+			}
+		}
+	}
+
+	function change(flag) {
+		//  来判断
+		if(flag)
+		{
+			// 把 最后一个json 删除   并且把最后一个添加到json 第一个位置
+			json.unshift(json.pop());
+		}
+		else
+		{
+			//   移除第一个   放到json 最后一个
+			json.push(json.shift());
+		}
+		// 为什么给for呢？ 以为我们的json 有5个  盒子li 有 5个
+		for(var i=0;i<json.length; i++)
+		{
+			animate(lis[i],{
+				width: json[i].width,
+				top: json[i].top,
+				left: json[i].left,
+				opacity:json[i].opacity,
+				zIndex:json[i].z
+			},function(){ jieliu = true;})  // 回调函数是等动画执行完毕  才行
+		}
+	}
+
+</script>

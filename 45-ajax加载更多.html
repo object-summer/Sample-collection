@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<div id="more" data-status="1">
+			加载更多
+		</div>
+		<input type="hidden" id="page" value="2">
+		<div class="information"></div>
+	</body>
+
+</html>
+<script src="js/jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	$(function () {  
+       $("#more").click(function () {  
+           var page = parseInt($("#page").val());  
+           $(this).html("加载中...");  
+           status=$(this).attr("data-status");  
+           if(status==1) {  
+               status = $(this).attr("data-status", "0");
+//             alert(status)
+               $.ajax({  
+                   type: "get",  
+                   url: "json/skill.json",  
+                   data: "page=" + page,  
+                   dataType: "json",  
+                   success: function (data) {  
+                       skill = data.skill;  
+                       /*数据不够10条隐藏按钮*/  
+                       if (skill.length < 3) {  
+                           $(this).hide()  
+                       } else {  
+                           $("#page").val(page+1);//记录页码  
+                       }  
+                       insertDiv(skill);  
+                   }  
+               });  
+           }  
+  
+       });  
+   });  
+       function insertDiv(data){ 
+       	var kk =$("#page").val()-1;
+       	console.log(kk)
+           var information = $(".information");
+           var html = '';
+           var num=1
+           for (var i = 0; i < data.length; i++) {  
+           	console.log(num*kk*3)
+           	if(num*kk*3 < i <  num*(kk+1)*3){
+           		html +="<div>"+data[i].name+"</div>"+"<div>"+data[i].comment+"</div>"  
+           		num++;
+           		kk++
+           	}
+           }  
+           information.append(html);  
+           $("#more").html("加载更多");  
+           $("#more").attr("data-status","1");  
+       }  
+</script>

@@ -1,0 +1,87 @@
+<html>
+<head>
+    <title>测试滚动效果</title>
+    <meta charset="utf-8">
+    <style type="text/css">
+        #viewBox
+        {
+            width: 500px;
+            overflow: hidden;
+            border: 1px solid pink;
+        }
+
+        #scrollBox
+        {
+            float: left;
+            width: 2500px; /*必须足够大才能放下所有滚动内容*/
+        }
+
+        #A1, #A2, ul li
+        {
+            float: left;
+            list-style: none;
+        }
+        #A1 {
+        	 background: red;
+        }
+    </style>
+    <script type="text/javascript">
+    	  
+    	 /*var viewBox, As1, As2, Atimer;
+    	   function goto(){
+    	   	viewBox = $("viewBox");
+    	   	As1 = $("A1");
+    	   	As2 = $("A2");
+    	   As2.innerHTML = As1.innerHTML; //复制一份相同的放在ul后面做衔接
+    	   	atimer = setInterval(amar, 20);
+    	   }
+    	   function amar(){
+    	   	if(As1.offsetWidth <= viewBox.scrollLeft){
+    	   		viewBox.scrollLeft -= As1.offsetWidth;
+    	   	}else{
+    	   		viewBox.scrollLeft++;
+    	   	}
+    	   };
+    	    function $(id) {
+            return document.getElementById(id);
+        }
+    	   console.log("11")
+    	    window.onload = goto();*/
+    	
+      var viewBox, As1, As2, Atimer;
+        function init() {
+            viewBox = getid("viewBox");
+            As1 = getid("A1");
+            As2 = getid("A2");
+            As2.innerHTML = As1.innerHTML; //复制一份相同的放在ul后面做衔接
+            Atimer = setInterval(Amar, 20);
+        }
+        function Amar() {
+            if (As1.offsetWidth <= viewBox.scrollLeft) {
+                viewBox.scrollLeft -= As1.offsetWidth;
+            } else {
+                viewBox.scrollLeft++;
+            }
+        }
+        function getid(id) {
+            return document.getElementById(id);
+        }
+        window.onload = init;
+    </script>
+
+</head>
+<body>
+
+    <div id="viewBox" onmouseover="clearInterval(Atimer)" onmouseout="atimer=setInterval(Amar,20)">
+        <div id="scrollBox">
+            <ul id="A1">
+                <li><a href="#">公告1</a></li>
+                <li><a href="#">公告2</a></li>
+                <li><a href="#">公告3</a></li>
+            </ul>
+            <!-- 用来做无缝衔接 -->
+            <ul id="A2"></ul>
+        </div>
+    </div>
+</body>
+</html>

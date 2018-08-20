@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.lazy {
+				background: url(.//image/loading.gif) center no-repeat;
+				border: 1px solid black;
+			}
+			
+			#loadBar {
+				width: 200px;
+				height: 15px;
+				background: linear-gradient(90deg, #187103, #81b50b, #187103);
+				border: 10px solid white;
+				position: absolute;
+				top: 150px;
+				left: 50%;
+				margin-left: -100px;
+				
+			}
+			#loadBarMask {
+					width: 70%;
+					height: 100%;
+					background-color: beige;
+					position: absolute;
+					right: 0;
+				}
+		</style>
+	</head>
+
+	<body>
+		<div class="picList">
+			<img class="lazy" data-src="image/pro1.jg">
+			<img class="lazy" data-src="image/pro2.jpg">
+			<img class="lazy" data-src="image/pro3.jpg">
+			<img class="lazy" data-src="image/pro4.jpg">
+			<img class="lazy" data-src="image/pro1.jpg">
+			<img class="lazy" data-src="image/pro2.jpg">
+			<img class="lazy" data-src="image/pro3.jpg">
+			<img class="lazy" data-src="image/pro4.jpg">
+			<img class="lazy" data-src="image/pro1.jpg">
+			<img class="lazy" data-src="image/pro2.jpg">
+		</div>
+
+		<div id="loadBar">
+			<div id="loadBarMask"></div>
+		</div>
+	</body>
+
+</html>
+<script src="../js/jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var lazyPic = $('img.lazy');
+	var loadBarMask = $('#loadBarMask');
+	var picList = $('.picList');
+
+	var activePic = 0;
+	var totalPic = lazyPic.length;
+	/*每秒加载一张图片*/
+
+	function loadPicPerSecond() {
+
+		lazyPic.each(function(index) {
+
+			var self = $(this);
+
+			//console.log(self[0].complete);
+			/*img标签已经事先写在html中，所以此时的complete状态全部都是true*/
+
+			setTimeout(function() {
+
+				src[index] = self.attr('data-src');
+				self.attr('src', src[index]);
+				self.removeClass('lazy');
+
+				//图片获得正确src地址之后，可以执行下面的onload操作
+				self[0].onload = function() {
+
+					//加载读条loadBar动画
+					countPic();
+				}
+
+				//图片获得的src地址不正确时，执行下面的onerror操作
+				self[0].onerror = function() {
+					/*this.style.background = 'url(pic/compressed/picList18.jpg) center no-repeat';*/
+					countPic();
+				}
+
+			}, 1000 * index);
+
+		})
+
+	}
+
+	/*根据onload的执行情况来计算当前的图片加载进度.每onload一次，activePic就增加1*/
+
+	function countPic() {
+
+		activePic++;
+
+		var leftPic = totalPic - activePic;
+		var percentPic = Math.ceil(leftPic / totalPic * 100); //没有加载的图片百分比，和loadBarMask的宽度占比配合
+
+		console.log("已加载" + (100 - percentPic) + "%");
+
+		loadBarMask.css("width", percentPic + "%");
+
+		if(percentPic == 0) {
+			$('#loadBar').hide();
+		}
+	}
+</script>

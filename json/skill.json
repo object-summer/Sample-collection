@@ -1,0 +1,24 @@
+{
+	"skill" :[
+		{"name":"1html","percent":"20","bgcolor":"#424242cc","comment":"MyBlog--Web前端工程师简历"},
+		{"name":"2css","percent":"40","bgcolor":"red","comment":"MyBlog--Web前端工程师简历"},
+		{"name":"3javascript","percent":"60","bgcolor":"#424242cc","comment":"MyBlog--Web前端工程师简历"},
+		{"name":"4jquery","percent":"80","bgcolor":"#424242cc","comment":"MyBlog--Web前端工程师简历"},
+		{"name":"5html","percent":"20","bgcolor":"#424242cc","comment":"MyBlog--Web前端工程师简历"},
+		{"name":"6css","percent":"40","bgcolor":"red","comment":"MyBlog--Web前端工程师简历"},
+		{"name":"7javascript","percent":"60","bgcolor":"#424242cc","comment":"MyBlog--Web前端工程师简历"},
+		{"name":"8jquery","percent":"80","bgcolor":"#424242cc","comment":"MyBlog--Web前端工程师简历"},
+		{"name":"html","percent":"20","bgcolor":"#424242cc","comment":"MyBlog--Web前端工程师简历"},
+		{"name":"css","percent":"40","bgcolor":"red","comment":"MyBlog--Web前端工程师简历"},
+		{"name":"javascript","percent":"60","bgcolor":"#424242cc","comment":"MyBlog--Web前端工程师简历"},
+		{"name":"jquery","percent":"80","bgcolor":"#424242cc","comment":"MyBlog--Web前端工程师简历"},
+		{"name":"html","percent":"20","bgcolor":"#424242cc","comment":"MyBlog--Web前端工程师简历"},
+		{"name":"css","percent":"40","bgcolor":"red","comment":"MyBlog--Web前端工程师简历"},
+		{"name":"javascript","percent":"60","bgcolor":"#424242cc","comment":"MyBlog--Web前端工程师简历"},
+		{"name":"jquery","percent":"80","bgcolor":"#424242cc","comment":"MyBlog--Web前端工程师简历"},
+		{"name":"html","percent":"20","bgcolor":"#424242cc","comment":"MyBlog--Web前端工程师简历"},
+		{"name":"css","percent":"40","bgcolor":"red","comment":"MyBlog--Web前端工程师简历"},
+		{"name":"javascript","percent":"60","bgcolor":"#424242cc","comment":"MyBlog--Web前端工程师简历"},
+		{"name":"jquery","percent":"80","bgcolor":"#424242cc","comment":"MyBlog--Web前端工程师简历"}
+	]
+}

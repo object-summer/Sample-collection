@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<select name="year" id="year">
+    <option value="2016">2016</option>
+    <option value="2017">2017</option>
+    <option value="2018">2018</option>
+</select>
+<select name="month" id="month">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+</select>
+<select name="day" id="day">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+</select>
+<button id="btn">发送</button>
+<span id="result"></span>
+<script>
+btn.onclick = function(){
+    ajax({
+        url:'form.php',
+        data:{year:year.value,month:month.value,day:day.value},
+        callback:function(data){
+            result.innerHTML = data;
+        }
+    })    
+}
+</script>
+	</body>
+</html>
+<script type="text/javascript">
+	function ajax(obj){
+    //method为ajax提交的方式，默认为'get'方法
+    obj.method = obj.method || 'get';
+    //创建xhr对象
+    var xhr;
+    if(window.XMLHttpRequest){
+        xhr = new XMLHttpRequest();
+    }else{
+        xhr = new ActiveXObject('Microsoft.XMLHTTP');
+    }
+    //异步接受响应
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4){
+            if(xhr.status == 200){
+                //callback为回调函数，如果不设置则无回调
+                obj.callback && obj.callback(xhr.responseText);
+            }
+        }
+    }
+    //创建数据字符串，用来保存要提交的数据
+    var strData = '';
+    if(obj.method == 'post'){
+        for(var key in obj.data){
+            strData += '&' + key + "=" + obj.data[key];
+        }    
+        //去掉多余的'&'
+        strData = strData.substring(1); 
+        xhr.open('post',obj.url,true);
+        //设置请求头
+        xhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
+        //发送请求
+        xhr.send(strData);    
+    }else{
+        //如果是get方式，则对字符进行编成
+        for(var key in obj.data){
+            strData += '&' + encodeURIComponent(key) + "=" + encodeURIComponent(obj.data[key]);
+        }    
+        //去掉多余的'&'，并增加随机数，防止缓存
+        strData = strData.substring(1) + '&'+Number(new Date());   
+        xhr.open('get',obj.url+'?'+strData,true);
+        //发送请求
+        xhr.send();    
+    }
+}
+</script>
